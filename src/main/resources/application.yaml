@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: COURSE-SERVICE
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/course-service/**
+        - id: AUTHUSER-SERVICE
+          uri: lb://AUTHUSER-SERVICE
+          predicates:
+            - Path=/authuser-service/**
+#
+#    discovery:
+#      enabled: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+#  instance:
+#    hostname: localhost
+logging:
+  level:
+    com.ead: DEBUG
+    o.s.w.c.RestTemplate: DEBUG
+    o.s.w.c.FeignClient: DEBUG
+    org.springframework.web.: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+
