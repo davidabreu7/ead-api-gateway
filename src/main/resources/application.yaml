@@ -15,6 +15,10 @@ spring:
           uri: lb://AUTHUSER-SERVICE
           predicates:
             - Path=/authuser-service/**
+        - id: NOTIFICATION-SERVICE
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+              - Path=/notification-service/**
 #
 #    discovery:
 #      enabled: true
